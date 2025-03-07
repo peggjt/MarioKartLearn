@@ -1,0 +1,20 @@
+# Ignore compiled files
+*.o
+*.pyc
+*.exe
+
+# Ignore logs and temporary files
+logs/
+*.log
+tmp/
+
+# Ignore environment files
+.env
+venv/
+
+# Ignore IDE configurations
+.vscode/
+.idea/
+
+# Ignore raw data
+dump/
