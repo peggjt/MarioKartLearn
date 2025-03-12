@@ -16,16 +16,20 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     libsm6 \
     libxext6 \
+    xvfb \
     git \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies
 COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --timeout=180 -r requirements.txt
 
 # Copy all project files
 COPY . .
 
-# Default command (optional, can be overridden)
-CMD ["bash"]
+# Set environment variable for display
+ENV DISPLAY=:99
+
+# Start Xvfb
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x24 & exec bash"]
 
